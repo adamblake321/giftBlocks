@@ -1,0 +1,705 @@
+!!! 5
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Gifting Block™ - Your Shopping Cart
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    // Loading Bootstrap
+    link(href='bootstrap/css/bootstrap.css', rel='stylesheet')
+    link(href='bootstrap/css/bootstrap-responsive.css', rel='stylesheet')
+    // Loading Custom CSS
+    link(href='css/custom.css', rel='stylesheet')
+    link(href='css/bootstrap-modal.css', rel='stylesheet')
+    // Loading Flat UI
+    link(href='css/flat-ui.css', rel='stylesheet')
+    link(rel='shortcut icon', href='images/favicon.ico')
+    // Loading FuelUX
+    link(href='http://fuelcdn.com/fuelux/2.2/css/fuelux.css', rel='stylesheet')
+    link(href='http://fuelcdn.com/fuelux/2.2/css/fuelux-responsive.css', rel='stylesheet')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', type='text/javascript')
+    script(src='http://fuelcdn.com/fuelux/2.2/loader.min.js', type='text/javascript')
+    // HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file.
+    //if lt IE 9
+      script(src='js/html5shiv.js')
+  body
+    // BEGIN TOP BAR
+    .navbar.navbar-inverse
+      .navbar-inner
+        .container-fluid
+          button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#')
+            img(src='img/finale-logo.png')
+          .nav-collapse.collapse
+            ul.nav
+              li.offset1
+                a
+                  form#searchSubmit(action='search')
+                    .input-append
+                        input.input-xxlarge(type='text', name='Search')
+                        span.add-on
+                          i.fui-eye(style='color: #000;')
+            ul.nav.pull-right.hidden-tablet(style='margin-top: 15px; margin-left: 15px; margin-right: 50px;')
+              li
+                a(href='#')
+                  img(src='img/little-box.png', width='24px', height='24px')
+                  span.hidden-desktop Notifications
+                  span.navbar-new-bt 1
+              li
+                a(href='./profile')
+                  span.fui-user
+                  span.hidden-desktop My Profile
+                ul
+                  li
+                    a(href='./edit-profile')
+                      i.icon-pencil.icon-white
+                      | Edit Your Profile
+                  li.divider
+                  li
+                    a(href='#')
+                      i.icon-th-large.icon-white
+                      | Find Friends
+                  li
+                    a(href='mailto:support@giftingblock.com')
+                      i.icon-envelope.icon-white
+                      | Contact Support
+              li.active
+                a(href='./productdiscovery')
+                  img(src='img/cart.png', width='24px', height='24px')
+                  span.hidden-desktop  Browse Products
+                ul
+                  li
+                    a(href='./shopping-cart')
+                      i.icon-shopping-cart.icon-white
+                      | My Shopping Cart
+              li
+                a(href='./settings')
+                  span.fui-gear
+                  span.hidden-desktop Settings
+                ul(style='width: 125px;')
+                  li
+                    a(href='./?logout')
+                      i.icon-off.icon-white
+                      | Log Out
+    .container-fluid.hidden-phone
+      .fuelux
+        #MyWizard.wizard
+          ul.steps
+            li.active(data-target='#step1')
+              span.badge
+                img(src='img/cart.png', width='16px', height='16px')
+              | Shopping Cart
+              span.chevron
+            li(data-target='#step2')
+              span.badge
+                i.fui-credit-card
+              | Payment Method
+              span.chevron
+            li(data-target='#step3')
+              span.badge
+                i.icon-gift.icon-white
+              | Shipping Information
+              span.chevron
+            li(data-target='#step4')
+              span.badge
+                i.fui-check
+              | Order Confirmation
+              span
+          .actions
+            button.btn.shoppingPrev(type='button')
+              i.icon-arrow-left
+              | Prev
+            button.btn.shoppingNext(type='button')
+              | Next
+              i.icon-arrow-right
+        .step-content
+          #step1.step-pane.active.well
+            hr
+            .row-fluid
+              .span8(id="customOrderList")
+                -for(var i=0; i<productList.length; i++){
+                #productCart.row-fluid
+                  a.close.shopping(id="itemclosed" + i)
+                    input(type='hidden', id="itemclosed" + i, value=productList[i].asin)
+                    i.fui-cross-inverted
+                  .span3
+                    img.img-polaroid(src=productList[i].img)
+                  .span6
+                    ul.unstyled
+                      li
+                        h3=productList[i].name
+                      li
+                        p.productDesc= productList[i].details
+                      li
+                        | Quantity:
+                        input(type='number',id='quanty'+i, class="quantyCls"+i, style='width: 45px; padding: 1px;', value='1')
+                        input(type='hidden', id='quanty'+i, value="1")
+                        | &nbsp;&nbsp;&nbsp; Size:
+                        select(style='width: auto; padding: 1px;')
+                          option Small
+                          option Medium
+                          option Large
+                          option X-Large
+                          option XX-Large
+                      li.divider
+                      li
+                        p
+                          strong Price:
+                          b(id="quanty"+i )|#{productList[i].price}
+                -}
+              #cartSide.span4
+                h2(style='text-align: left;') Your Order
+                table.table.table-striped
+                  tbody
+                    tr
+                      td Cart Subtotal
+                      td(id='subtotalorder') $0
+                    tr
+                      td Tax
+                      td(id='tax') $0
+                    tr
+                      td Shipping
+                      td
+                        strong free
+                    tr
+                      td
+                        strong Total:
+                      td(id='totalorder') $0
+                hr
+                // <a href="#"><button data-target="#step2" class="btn btn-large btn-info">Checkout</button></a>
+          #step2.step-pane.well
+            input(type="hidden", value="billing", class"hiddenBilling")
+            .row-fluid
+              .span6
+                .row
+                  .span8.offset1
+                    form#billingform.form-horizontal(action='billing', method='post', accept-charset='utf-8')
+                      .control-group
+                        fieldset
+                          legend Billing Address
+                          label.control-label(for='email')
+                            | Billing E-Mail
+                          .controls
+                            input#email(id="billingEmail",class="billingEmail", name='email', type='email', value='')
+                            span.help-inline   Where should we send your order confirmation?
+                      .control-group
+                        label.control-label(for='address')
+                          | Street Address
+                        .controls
+                          input#address(id="billingStreet", name='address', placeholder='W 123 Street', type='text', value='')
+                          span.help-inline   Street Name and/or apartment number
+                      .control-group
+                        label.control-label(for='zip')
+                          | Zip Code
+                        .controls
+                          input#zip(id="billingZip", name='zip', type='text', value='')
+                      .control-group
+                        label.control-label(for='city')
+                          | City
+                        .controls
+                          input#city(id="billingCity", name='city', type='text', value='')
+                      .control-group
+                        label.control-label State / Province / Region
+                        .controls
+                          input#region.input-xlarge(id="billingState", name='region', type='text', placeholder='state / province / region')
+                          p.help-block State
+                      .control-group
+                        label.control-label(for='country')
+                          | Country
+                        .controls
+                          select#country(id="billingCountry",name='country')
+                            option(value='')
+                            option(value='AR') Argentina
+                            option(value='AU') Australia
+                            option(value='AT') Austria
+                            option(value='BY') Belarus
+                            option(value='BE') Belgium
+                            option(value='BA') Bosnia and Herzegovina
+                            option(value='BR') Brazil
+                            option(value='BG') Bulgaria
+                            option(value='CA') Canada
+                            option(value='CL') Chile
+                            option(value='CN') China
+                            option(value='CO') Colombia
+                            option(value='CR') Costa Rica
+                            option(value='HR') Croatia
+                            option(value='CU') Cuba
+                            option(value='CY') Cyprus
+                            option(value='CZ') Czech Republic
+                            option(value='DK') Denmark
+                            option(value='DO') Dominican Republic
+                            option(value='EG') Egypt
+                            option(value='EE') Estonia
+                            option(value='FI') Finland
+                            option(value='FR') France
+                            option(value='GE') Georgia
+                            option(value='DE') Germany
+                            option(value='GI') Gibraltar
+                            option(value='GR') Greece
+                            option(value='HK') Hong Kong S.A.R., China
+                            option(value='HU') Hungary
+                            option(value='IS') Iceland
+                            option(value='IN') India
+                            option(value='ID') Indonesia
+                            option(value='IR') Iran
+                            option(value='IQ') Iraq
+                            option(value='IE') Ireland
+                            option(value='IL') Israel
+                            option(value='IT') Italy
+                            option(value='JM') Jamaica
+                            option(value='JP') Japan
+                            option(value='KZ') Kazakhstan
+                            option(value='KW') Kuwait
+                            option(value='KG') Kyrgyzstan
+                            option(value='LA') Laos
+                            option(value='LV') Latvia
+                            option(value='LB') Lebanon
+                            option(value='LT') Lithuania
+                            option(value='LU') Luxembourg
+                            option(value='MK') Macedonia
+                            option(value='MY') Malaysia
+                            option(value='MT') Malta
+                            option(value='MX') Mexico
+                            option(value='MD') Moldova
+                            option(value='MC') Monaco
+                            option(value='ME') Montenegro
+                            option(value='MA') Morocco
+                            option(value='NL') Netherlands
+                            option(value='NZ') New Zealand
+                            option(value='NI') Nicaragua
+                            option(value='KP') North Korea
+                            option(value='NO') Norway
+                            option(value='PK') Pakistan
+                            option(value='PS') Palestinian Territory
+                            option(value='PE') Peru
+                            option(value='PH') Philippines
+                            option(value='PL') Poland
+                            option(value='PT') Portugal
+                            option(value='PR') Puerto Rico
+                            option(value='QA') Qatar
+                            option(value='RO') Romania
+                            option(value='RU') Russia
+                            option(value='SA') Saudi Arabia
+                            option(value='RS') Serbia
+                            option(value='SG') Singapore
+                            option(value='SK') Slovakia
+                            option(value='SI') Slovenia
+                            option(value='ZA') South Africa
+                            option(value='KR') South Korea
+                            option(value='ES') Spain
+                            option(value='LK') Sri Lanka
+                            option(value='SE') Sweden
+                            option(value='CH') Switzerland
+                            option(value='TW') Taiwan
+                            option(value='TH') Thailand
+                            option(value='TN') Tunisia
+                            option(value='TR') Turkey
+                            option(value='UA') Ukraine
+                            option(value='AE') United Arab Emirates
+                            option(value='GB') United Kingdom
+                            option(value='US') USA
+                            option(value='UZ') Uzbekistan
+                            option(value='VN') Vietnam
+              .span5
+                form.form-horizontal(id="payment-form", action="/shopping-cart/payment")
+                  fieldset
+                    legend Payment Information
+                    .controlp-group
+                      label.control-label Accepted Payments
+                      .controls
+                        img(src='img/visa.png', width='55px', height='37px')
+                        img(src='img/mastercard.png', width='55px', height='37px')
+                        img(src='img/amex.png', width='55px', height='37px')
+                        img(src='img/discover.png', width='55px', height='37px')
+                        img(src='img/amazon.png', width='55px', height='37px')
+                    br
+                    .control-group
+                      label.control-label Card Holder's Name
+                      .controls
+                        input.input-block-level(type='text',id="cardHolder", pattern='\w+ \w+.*', title='Fill your first and last name', required='required')
+                    .control-group
+                      label.control-label Card Number
+                      .controls
+                        .row-fluid
+                          .span3
+                            input.input-block-level(type='text',id="cardNumber1", autocomplete='off', maxlength='4', pattern='\d{4}', title='First four digits', required='required')
+                          .span3
+                            input.input-block-level(type='text',id="cardNumber2", autocomplete='off', maxlength='4', pattern='\d{4}', title='Second four digits', required='required')
+                          .span3
+                            input.input-block-level(type='text',id="cardNumber3", autocomplete='off', maxlength='4', pattern='\d{4}', title='Third four digits', required='required')
+                          .span3
+                            input.input-block-level(type='text',id="cardNumber4", autocomplete='off', maxlength='4', pattern='\d{4}', title='Fourth four digits', required='required')
+                    .control-group
+                      label.control-label Card Expiry Date
+                      .controls
+                        .row-fluid
+                          .span4
+                            select.input-block-level(id="startDate")
+                              option Jan
+                              option Feb
+                              option Mar
+                              option Apr
+                              option May
+                              option Jun
+                              option Jul
+                              option Aug
+                              option Sept
+                              option Oct
+                              option Nov
+                              option Dec
+                          .span4
+                            select.input-block-level(id="endDate")
+                              option 2013
+                              option 2014
+                              option 2015
+                              option 2016
+                              option 2017
+                              option 2018
+                              option 2019
+                              option 2020
+                              option 2021
+                              option 2022
+                              option 2023
+                              option 2024
+                              option 2025
+                              option 2026
+                    .control-group
+                      label.control-label Card CVV
+                      .controls
+                        .row-fluid
+                          .span3
+                            input.input-block-level(type='text',id="cardCvv", autocomplete='off', maxlength='3', pattern='\d{3}', title='Three digits at back of your card', required='required')
+                            br
+                          img(src='img/cvc.png', width='55px', height='37px')
+                          .span8
+          #step3.step-pane.well
+            .row-fluid
+              .span6
+                form.form-horizontal
+                  fieldset
+                    // Address form
+                    h2 Shipping Information
+                    // full-name input
+                    .control-group
+                      label.control-label Full Name
+                      .controls
+                        input#full-name.input-xlarge(name='full-name',id="shippingName", type='text', placeholder='full name')
+                        p.help-block Recipient's Full Name
+                    // address-line1 input
+                    .control-group
+                      label.control-label Address Line 1
+                      .controls
+                        input#address-line1.input-xlarge(name='address-line1',id="shippingAddr1", type='text', placeholder='address line 1')
+                        p.help-block Recipient's Street Address or P.O. Box Number
+                    // address-line2 input
+                    .control-group
+                      label.control-label Address Line 2
+                      .controls
+                        input#address-line2.input-xlarge(name='address-line2',id="shippingAddr2", type='text', placeholder='address line 2')
+                        p.help-block Apartment, suite , unit, building, floor, etc.
+                    // city input
+                    .control-group
+                      label.control-label City / Town
+                      .controls
+                        input#city.input-xlarge(name='city',id="shippingCity", type='text', placeholder='city')
+                        p.help-block Recipient's City or Town
+                    // region input
+                    .control-group
+                      label.control-label State / Province / Region
+                      .controls
+                        input#region.input-xlarge(name='region',id="shippingState", type='text', placeholder='state / province / region')
+                        p.help-block Recipient's State
+                    // postal-code input
+                    .control-group
+                      label.control-label Zip / Postal Code
+                      .controls
+                        input#postal-code.input-xlarge(name='postal-code',id="shippingZip", type='text', placeholder='zip or postal code')
+                        p.help-block Recipient's Zip Code
+                    // country select
+                    .control-group
+                      label.control-label Country
+                      .controls
+                        select#country.input-xlarge(name='country',id="shippingCountry")
+                          option(value='', selected='selected') (please select a country)
+                          option(value='AF') Afghanistan
+                          option(value='AL') Albania
+                          option(value='DZ') Algeria
+                          option(value='AS') American Samoa
+                          option(value='AD') Andorra
+                          option(value='AO') Angola
+                          option(value='AI') Anguilla
+                          option(value='AQ') Antarctica
+                          option(value='AG') Antigua and Barbuda
+                          option(value='AR') Argentina
+                          option(value='AM') Armenia
+                          option(value='AW') Aruba
+                          option(value='AU') Australia
+                          option(value='AT') Austria
+                          option(value='AZ') Azerbaijan
+                          option(value='BS') Bahamas
+                          option(value='BH') Bahrain
+                          option(value='BD') Bangladesh
+                          option(value='BB') Barbados
+                          option(value='BY') Belarus
+                          option(value='BE') Belgium
+                          option(value='BZ') Belize
+                          option(value='BJ') Benin
+                          option(value='BM') Bermuda
+                          option(value='BT') Bhutan
+                          option(value='BO') Bolivia
+                          option(value='BA') Bosnia and Herzegowina
+                          option(value='BW') Botswana
+                          option(value='BV') Bouvet Island
+                          option(value='BR') Brazil
+                          option(value='IO') British Indian Ocean Territory
+                          option(value='BN') Brunei Darussalam
+                          option(value='BG') Bulgaria
+                          option(value='BF') Burkina Faso
+                          option(value='BI') Burundi
+                          option(value='KH') Cambodia
+                          option(value='CM') Cameroon
+                          option(value='CA') Canada
+                          option(value='CV') Cape Verde
+                          option(value='KY') Cayman Islands
+                          option(value='CF') Central African Republic
+                          option(value='TD') Chad
+                          option(value='CL') Chile
+                          option(value='CN') China
+                          option(value='CX') Christmas Island
+                          option(value='CC') Cocos (Keeling) Islands
+                          option(value='CO') Colombia
+                          option(value='KM') Comoros
+                          option(value='CG') Congo
+                          option(value='CD') Congo, the Democratic Republic of the
+                          option(value='CK') Cook Islands
+                          option(value='CR') Costa Rica
+                          option(value='CI') Cote d'Ivoire
+                          option(value='HR') Croatia (Hrvatska)
+                          option(value='CU') Cuba
+                          option(value='CY') Cyprus
+                          option(value='CZ') Czech Republic
+                          option(value='DK') Denmark
+                          option(value='DJ') Djibouti
+                          option(value='DM') Dominica
+                          option(value='DO') Dominican Republic
+                          option(value='TP') East Timor
+                          option(value='EC') Ecuador
+                          option(value='EG') Egypt
+                          option(value='SV') El Salvador
+                          option(value='GQ') Equatorial Guinea
+                          option(value='ER') Eritrea
+                          option(value='EE') Estonia
+                          option(value='ET') Ethiopia
+                          option(value='FK') Falkland Islands (Malvinas)
+                          option(value='FO') Faroe Islands
+                          option(value='FJ') Fiji
+                          option(value='FI') Finland
+                          option(value='FR') France
+                          option(value='FX') France, Metropolitan
+                          option(value='GF') French Guiana
+                          option(value='PF') French Polynesia
+                          option(value='TF') French Southern Territories
+                          option(value='GA') Gabon
+                          option(value='GM') Gambia
+                          option(value='GE') Georgia
+                          option(value='DE') Germany
+                          option(value='GH') Ghana
+                          option(value='GI') Gibraltar
+                          option(value='GR') Greece
+                          option(value='GL') Greenland
+                          option(value='GD') Grenada
+                          option(value='GP') Guadeloupe
+                          option(value='GU') Guam
+                          option(value='GT') Guatemala
+                          option(value='GN') Guinea
+                          option(value='GW') Guinea-Bissau
+                          option(value='GY') Guyana
+                          option(value='HT') Haiti
+                          option(value='HM') Heard and Mc Donald Islands
+                          option(value='VA') Holy See (Vatican City State)
+                          option(value='HN') Honduras
+                          option(value='HK') Hong Kong
+                          option(value='HU') Hungary
+                          option(value='IS') Iceland
+                          option(value='IN') India
+                          option(value='ID') Indonesia
+                          option(value='IR') Iran (Islamic Republic of)
+                          option(value='IQ') Iraq
+                          option(value='IE') Ireland
+                          option(value='IL') Israel
+                          option(value='IT') Italy
+                          option(value='JM') Jamaica
+                          option(value='JP') Japan
+                          option(value='JO') Jordan
+                          option(value='KZ') Kazakhstan
+                          option(value='KE') Kenya
+                          option(value='KI') Kiribati
+                          option(value='KP') Korea, Democratic People's Republic of
+                          option(value='KR') Korea, Republic of
+                          option(value='KW') Kuwait
+                          option(value='KG') Kyrgyzstan
+                          option(value='LA') Lao People's Democratic Republic
+                          option(value='LV') Latvia
+                          option(value='LB') Lebanon
+                          option(value='LS') Lesotho
+                          option(value='LR') Liberia
+                          option(value='LY') Libyan Arab Jamahiriya
+                          option(value='LI') Liechtenstein
+                          option(value='LT') Lithuania
+                          option(value='LU') Luxembourg
+                          option(value='MO') Macau
+                          option(value='MK') Macedonia, The Former Yugoslav Republic of
+                          option(value='MG') Madagascar
+                          option(value='MW') Malawi
+                          option(value='MY') Malaysia
+                          option(value='MV') Maldives
+                          option(value='ML') Mali
+                          option(value='MT') Malta
+                          option(value='MH') Marshall Islands
+                          option(value='MQ') Martinique
+                          option(value='MR') Mauritania
+                          option(value='MU') Mauritius
+                          option(value='YT') Mayotte
+                          option(value='MX') Mexico
+                          option(value='FM') Micronesia, Federated States of
+                          option(value='MD') Moldova, Republic of
+                          option(value='MC') Monaco
+                          option(value='MN') Mongolia
+                          option(value='MS') Montserrat
+                          option(value='MA') Morocco
+                          option(value='MZ') Mozambique
+                          option(value='MM') Myanmar
+                          option(value='NA') Namibia
+                          option(value='NR') Nauru
+                          option(value='NP') Nepal
+                          option(value='NL') Netherlands
+                          option(value='AN') Netherlands Antilles
+                          option(value='NC') New Caledonia
+                          option(value='NZ') New Zealand
+                          option(value='NI') Nicaragua
+                          option(value='NE') Niger
+                          option(value='NG') Nigeria
+                          option(value='NU') Niue
+                          option(value='NF') Norfolk Island
+                          option(value='MP') Northern Mariana Islands
+                          option(value='NO') Norway
+                          option(value='OM') Oman
+                          option(value='PK') Pakistan
+                          option(value='PW') Palau
+                          option(value='PA') Panama
+                          option(value='PG') Papua New Guinea
+                          option(value='PY') Paraguay
+                          option(value='PE') Peru
+                          option(value='PH') Philippines
+                          option(value='PN') Pitcairn
+                          option(value='PL') Poland
+                          option(value='PT') Portugal
+                          option(value='PR') Puerto Rico
+                          option(value='QA') Qatar
+                          option(value='RE') Reunion
+                          option(value='RO') Romania
+                          option(value='RU') Russian Federation
+                          option(value='RW') Rwanda
+                          option(value='KN') Saint Kitts and Nevis
+                          option(value='LC') Saint LUCIA
+                          option(value='VC') Saint Vincent and the Grenadines
+                          option(value='WS') Samoa
+                          option(value='SM') San Marino
+                          option(value='ST') Sao Tome and Principe
+                          option(value='SA') Saudi Arabia
+                          option(value='SN') Senegal
+                          option(value='SC') Seychelles
+                          option(value='SL') Sierra Leone
+                          option(value='SG') Singapore
+                          option(value='SK') Slovakia (Slovak Republic)
+                          option(value='SI') Slovenia
+                          option(value='SB') Solomon Islands
+                          option(value='SO') Somalia
+                          option(value='ZA') South Africa
+                          option(value='GS') South Georgia and the South Sandwich Islands
+                          option(value='ES') Spain
+                          option(value='LK') Sri Lanka
+                          option(value='SH') St. Helena
+                          option(value='PM') St. Pierre and Miquelon
+                          option(value='SD') Sudan
+                          option(value='SR') Suriname
+                          option(value='SJ') Svalbard and Jan Mayen Islands
+                          option(value='SZ') Swaziland
+                          option(value='SE') Sweden
+                          option(value='CH') Switzerland
+                          option(value='SY') Syrian Arab Republic
+                          option(value='TW') Taiwan, Province of China
+                          option(value='TJ') Tajikistan
+                          option(value='TZ') Tanzania, United Republic of
+                          option(value='TH') Thailand
+                          option(value='TG') Togo
+                          option(value='TK') Tokelau
+                          option(value='TO') Tonga
+                          option(value='TT') Trinidad and Tobago
+                          option(value='TN') Tunisia
+                          option(value='TR') Turkey
+                          option(value='TM') Turkmenistan
+                          option(value='TC') Turks and Caicos Islands
+                          option(value='TV') Tuvalu
+                          option(value='UG') Uganda
+                          option(value='UA') Ukraine
+                          option(value='AE') United Arab Emirates
+                          option(value='GB') United Kingdom
+                          option(value='US') United States
+                          option(value='UM') United States Minor Outlying Islands
+                          option(value='UY') Uruguay
+                          option(value='UZ') Uzbekistan
+                          option(value='VU') Vanuatu
+                          option(value='VE') Venezuela
+                          option(value='VN') Viet Nam
+                          option(value='VG') Virgin Islands (British)
+                          option(value='VI') Virgin Islands (U.S.)
+                          option(value='WF') Wallis and Futuna Islands
+                          option(value='EH') Western Sahara
+                          option(value='YE') Yemen
+                          option(value='YU') Yugoslavia
+                          option(value='ZM') Zambia
+                          option(value='ZW') Zimbabwe
+                        p.help-block Recipient's Country
+              .span4.offset1
+                h2 Special Requests
+          #step4.step-pane.well
+            .row-fluid
+              .span5
+                h3 Order Confirmation
+                hr
+              .span5
+                h3 Notify your Friend
+                hr
+                button.btn.btn-large.btn-info(type='button') Notify Them Now!
+       // Load JS here for greater good =============================
+      div#AmazonInlineWidget
+    script(type='text/javascript')
+      $('#MyWizard').wizard();
+    script(src='js/jquery-1.8.3.min.js')
+    script(src='js/jquery-ui-1.10.3.custom.min.js')
+    script(src='js/jquery.ui.touch-punch.min.js')
+    script(src='js/bootstrap.min.js')
+    script(src='js/bootstrap-select.js')
+    script(src='js/bootstrap-switch.js')
+    script(src='js/flatui-checkbox.js')
+    script(src='js/flatui-radio.js')
+    script(src='js/jquery.tagsinput.js')
+    script(src='js/jquery.placeholder.js')
+    script(src='js/jquery.stacktable.js')
+    script(src='js/application.js')
+    script(src='js/bootstrap-modalmanager.js')
+    script(src='js/bootstrap-modal.js')
+    script(src='https://static-na.payments-amazon.com/cba/js/us/PaymentWidgets.js')
+    script(src='js/qj.js')
+    script(src="https://js.stripe.com/v1/")
+    script(src="js/payment.js")
+    script
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-40554682-2', 'giftingblock.com');
+      ga('send', 'pageview');

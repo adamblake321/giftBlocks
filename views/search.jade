@@ -1,0 +1,185 @@
+!!! 5
+html
+  head
+    title Gifting Block™ - Male Profile
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(content='text/html; charset=UTF-8', http-equiv='Content-Type')
+    // Loading Bootstrap
+    link(href='bootstrap/css/bootstrap.css', rel='stylesheet')
+    link(href='bootstrap/css/bootstrap-responsive.css', rel='stylesheet')
+    // Loading Custom CSS
+    link(href='css/custom.css', rel='stylesheet')
+    // Loading Flat UI
+    link(href='css/flat-ui.css', rel='stylesheet')
+    link(rel='shortcut icon', href='images/favicon.ico')
+    link(rel='stylesheet', href='/css/divshot.css')
+    link(rel='stylesheet', href='/css/custom-search.css')
+  body
+    // BEGIN TOP BAR
+    .navbar.navbar-inverse
+      .navbar-inner
+        .container-fluid
+          button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#')
+            img(src='img/finale-logo.png')
+          .nav-collapse.collapse
+            ul.nav
+              li.offset1
+                a
+                  form#searchSubmit(action='search')
+                    .input-append
+                      input#search.input-xxlarge(type='text', name='Search')
+                      input(type="hidden", name="listname", value="#{listname}")
+                      span.add-on
+                        i.fui-eye(style='color: #000;')
+            ul.nav.pull-right.hidden-tablet(style='margin-top: 15px; margin-left: 15px; margin-right: 50px;')
+              li
+                a(href='#')
+                  img(src='img/little-box.png', width='24px', height='24px')
+                  span.hidden-desktop Notifications
+                  span.navbar-new-bt 1
+              li.active
+                a(href='./profile')
+                  span.fui-user
+                  span.hidden-desktop My Profile
+                ul
+                  li
+                    a(href='./edit-profile')
+                      i.icon-pencil.icon-white
+                      | Edit Your Profile
+                  li.divider
+                  li
+                    a(href='#')
+                      i.icon-th-large.icon-white
+                      | Find Friends
+                  li
+                    a(href='mailto:support@giftingblock.com')
+                      i.icon-envelope.icon-white
+                      | Contact Support
+              li
+                a(href='./productdiscovery')
+                  img(src='img/cart.png', width='24px', height='24px')
+                  span.hidden-desktop  Browse Products
+                ul
+                  li
+                    a(href='./shopping-cart')
+                      i.icon-shopping-cart.icon-white
+                      | My Shopping Cart
+              li
+                a(href='./settings')
+                  span.fui-gear
+                  span.hidden-desktop Settings
+                ul(style='width: 125px;')
+                  li
+                    a(href='./logout')
+                      i.icon-off.icon-white
+                      | Log Out
+    .container
+      input(type="hidden", id="productlistname", value="#{listname}")
+      .row-fluid
+        #myCarousel.carousel.slide.span9
+          a#backtoprofile(href="/profile",style="cursor:pointer; text-decoration:underline;")
+            b < Back to profile
+          ol.carousel-indicators
+          .carousel-inner
+           
+           -for(var i=0; i<ImageList.length; i++){
+              
+              .item
+                img(src=ImageList[i], style='height:320px; margin:auto;')
+               
+           -}
+          
+          a.carousel-control.left(href='#myCarousel', data-slide='prev') ‹
+          a.carousel-control.right(href='#myCarousel', data-slide='next') ›
+        .span3
+          .well
+            ul
+              li
+      .row
+        .span8.well
+        .span9
+          ul.thumbnails
+            -for(var i=0; i<ImageList.length; i++){
+              li.span3
+               .thumbnail
+                img.img-polaroid(src=M_ImageList[i], title=TitleList[i], style='width:160px!important;height:160px!important')
+                .caption
+                  h6(title=TitleList[i])=TitleList[i].toString().substr(0, 14) +"..."
+                  p.prodDescb
+                    span.pull-left(style='font-size: 14px;')=PriceList[i]
+                    span.pull-right
+                      a(id="shopping"+i, class='addCartCls', title='Gift This Item')
+                        input(type='hidden',id='addCart'+i, value=asinList[i])
+                        i.icon-gift
+                      a(id="addItem"+i, class='addItemCls', title='Add This Item to your List', style='cursor:pointer')
+                        i.icon-plus
+                        input(type='hidden',id='addItem'+i, value=asinList[i])
+                  p(align='center', style='padding-top: 10px;')
+                    a.btn.btn-small.btn-info.btn-block(alt='Single Product View', name=i) View Product
+
+            -}
+            
+          #productPagi.pagination.pagination-success
+            -if(currentPage != 1)
+               a.btn.btn-success.previous(href='/search?flag=prev&currentPage='+currentPage+'&Search='+keyword, style='')
+                 i.fui-arrow-left
+                 | Prev
+            small(style="")  Page #{currentPage} of #{PageCount}
+            -if(currentPage != PageCount)
+               a.btn.btn-success.next(href='/search?flag=next&currentPage='+currentPage+'&Search='+keyword, style='')
+                 | Next
+                 i.fui-arrow-right
+        .span3
+          .sidebar-nav
+            .well(style='padding: 8px 0;')
+              ul.nav.nav-list
+                li.nav-header QUICKPICKS
+                li
+                  ul.thumbnails
+                    
+                      -for(var i=0; i<ImageList.length; i++){
+                       li
+                         a.thumbnail(href='/single-product')
+                           img(alt='75x75',title=TitleList[i], style='width: 75px; height: 75px;', src=S_imageList[i])
+                      -}
+                li.nav-header Browse Products
+                li.divider
+                li Computers
+                li.divider
+    script(src='js/jquery-1.8.3.min.js')
+    script(src='js/jquery-ui-1.10.3.custom.min.js')
+    script(src='js/jquery.ui.touch-punch.min.js')
+    script(src='js/bootstrap.min.js')
+    script(src='js/bootstrap-select.js')
+    script(src='js/bootstrap-switch.js')
+    script(src='js/flatui-checkbox.js')
+    script(src='js/flatui-radio.js')
+    script(src='js/jquery.tagsinput.js')
+    script(src='js/jquery.placeholder.js')
+    script(src='js/jquery.stacktable.js')
+    script(src='js/application.js')
+    script(src='js/bootstrap-modalmanager.js')
+    script(src='js/bootstrap-modal.js')
+    script(src='js/qj.js')
+    script
+      (function (i, s, o, g, r, a, m)
+      {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function ()
+      {
+      (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+      ga('create', 'UA-40554682-2', 'giftingblock.com');
+      ga('send', 'pageview');
+      $("input.input-xxlarge").val("#{keyword}");
+
+   
+      $(".item").eq(0).addClass('active');
+      $(".caption h6").css({"text-align":"center"});
+  
+      rha_func();

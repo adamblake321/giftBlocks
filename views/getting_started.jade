@@ -1,0 +1,263 @@
+!!!
+html(lang="en")
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		title Gifting Block&trade; - Getting Started
+		link(rel='stylesheet', href='bootstrap/css/bootstrap.css')
+		link(rel='stylesheet', href='bootstrap/css/bootstrap-responsive.css')
+		link(rel='stylesheet', href='css/custom.css')
+		link(rel='stylesheet', href='css/bootstrap-modal.css')
+		link(rel='stylesheet', href='css/flat-ui.css')
+		link(rel='shortcut icon', href='images/favicon.ico')
+		
+		link(rel='stylesheet', href='http://fuelcdn.com/fuelux/2.2/css/fuelux.css')
+		link(rel='stylesheet', href='http://fuelcdn.com/fuelux/2.2/css/fuelux-responsive.css')
+		
+		link(rel='stylesheet', href='css/jquery-ui.css')
+		link(rel='stylesheet', href='css/qj.css')
+		
+		script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js",type="text/javascript")
+		
+		
+		| <!--[if lt IE 9]> script(type='text/javascript', src='js/html5shiv.js')<![endif]-->
+	body
+		// Begin Top Bar
+		div.navbar.navbar-inverse
+			div.navbar-inner
+				div.container-fluid
+					button.btn.btn-navbar(data-toggle="collapse",data-target=".nav-collapse")
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.brand(href="#" ,name="top")
+						img(src="img/finale-logo.png")
+					div.nav-collapse.collapse
+						ul.nav
+							li.offset1
+								a(href="#")
+									div.input-append
+										input.input-xxlarge(type="text", name="Search")
+										span.add-on
+											i.fui-eye(style="color:#000")
+						ul.nav.pull-right.hidden-tablet(style="margin-top: 15px; margin-left: 15px; margin-right: 50px;")
+							li
+								a(href="#")
+									img(src="img/little-box.png" ,width="24px", height="24px") span.hidden-desktop Notifications
+									span.navbar-new-bt 1
+							li
+								a(href="/profile")
+									span.fui-user
+									span.hidden-desktop My Profile
+								ul
+									li
+										a(href="/edit-profile") 
+											i.icon-pencil.icon-white
+											| Edit Your Profile
+									li.divider
+									li
+										a(href="#")
+											i.icon-th-large.icon-white
+											| Find Friends
+									li
+										a(href="mailto:support@giftingblock.com")
+											i.icon-envelope.icon-white
+											| Contact Support
+							
+							li.active
+								a(href="/products")
+									img(src="img/cart.png",width="24px", height="24px")
+									span.hidden-desktop Browse Products
+								ul
+									li
+										a(href="/shopping-cart")
+											i.icon-shopping-cart.icon-white
+											| My Shopping Cart
+							li
+								a(href="/settings" ,alt="Settings",title="Your Settings", rel="nofollow")
+									span.fui-gear
+									span.hidden-desktop Settings
+								ul(style="width:125px;")
+									li
+										a(href="/logout")
+											i.icon-off.icon-white
+											| Log Out
+		div.container-fluid
+			div.fuelux
+				div#MyWizard.wizard
+					ul.steps
+						li.active(data-target="#step1")
+							span.badge.badge-info 1
+							| Contact Information
+							span.chevron
+						li(data-target="#step2")
+							span.badge 2
+							| Sizes/Measurements
+							span.chevron
+						li(data-target="#step3")
+							span.badge 3
+							| Confirm
+							span.chevron
+					div.actions
+						button.btn.btn-small.btn-prev(type="button")
+							i.icon-arrow-left
+							| Prev Step
+						button.btn.btn-small.btn-next(type="button", data-last="Finish")
+							| Next Step
+							i.icon-arrow-right
+				div#gserr.gserr
+				
+				div.step-content
+					div.step-pane.active.well(id="step1")
+						br
+						form#gsStep1.form-signin
+							p.form-signin-heading Please Enter the Following Information Below!
+							div.control-group
+								label.lead(for="gsPass1") Create a Password
+								hr
+								label Password
+								input#gsPass1.span3( type="password" ,maxlength="20",placeholder="Password", required)
+								input#gsPass2.span3( type="password" ,maxlength="20",placeholder="Confirm Password", required)
+							div.control-group
+								label.lead(for="Contact Info") Contact Information
+								hr
+								label Address
+								input#gsAdd1.span5( type="text" ,placeholder="Address 1", required)
+								br
+								input#gsAdd2.span5( type="text" ,placeholder="Address 2 ")
+								br
+								input#gsAddCity.span2(type="text",placeholder="City",required)
+								select#gsAddState.input-medium.bfh-states(data-country="US", data-state="")
+								input#gsAddZip.span2(type="text",maxlength="5",placeholder="Zip Code",required)
+							br
+							div.control-group
+								label Birthday
+								input#gsBirth.span3(type="text")
+								
+							div.control-group
+								label Phone Number
+								input#gsPhone.input-medium.bfh-phone(type="text" ,data-format="+1 (ddd) ddd-dddd")
+							div.control-group
+								label Gender
+								select#gsGender.span2(name="gender")
+									option(value="") Please Select
+									option(value="male") Male
+									option(value="female") Female
+								
+						form#allstepsform(method="post",enctype="multipart/form-data",action="/saveprofile")
+							div.control-group
+								label Profile Picture(Optional)
+								input#profpicture(type="file", name="profpicture")
+								
+					
+					div.step-pane.well(id="step2")
+						p.form-signin-heading.lead Please Enter the Following Information Below!
+						p
+							| If you don't know your sizes or want to learn how to size yourself
+							a(href="#sizes-full-width", data-toggle="modal", title="Clothing Size Information - Gifting Block" ,target="_blank") click here
+						fieldset
+							label.checkbox.primary(for="checkbox1")
+								span.icons
+									span.first-icon.fui-checkbox-unchecked
+									span.second-icon.fui-checkbox-checked
+								input#checkbox1(type="checkbox",data-toggle="checkbox")
+								| Right Handed
+							label.checkbox.primary(for="checkbox2")
+								span.icons
+									span.first-icon.fui-checkbox-unchecked
+									span.second-icon.fui-checkbox-checked
+								input#checkbox2(type="checkbox",data-toggle="checkbox")
+								| Left Handed
+						p
+							div.control-group
+								label.lead(for="Head Size") Head Size
+								hr
+								label Hat
+								input#gsHat.span3( type="text",placeholder="S,M,L ....")
+								div.gshat.gssizinghide
+									label Head Measurement
+									input#gsHeadM.span3(type="text" ,placeholder="Inch")
+									label Hat Measurement
+									input#gsHatM.span3(type="text" ,placeholder="Inch")
+							div.control-group
+								label.lead(for="Torso Size") Torso Size
+								hr
+								label Shirt
+								input#gsShirt.span3( type="text",placeholder="XS,M,XL,2X,3X ....")
+								div.gsshirt.gssizinghide
+									label Chest
+									input#gsChestM.span3(type="text",placeholder="Inch")
+									label Neck
+									input#gsNeckM.span3(type="text",placeholder="Inch")
+									label Sleeve
+									input#gsSleeveM.span3(type="text",placeholder="Inch")
+							div.control-group
+								label.lead(for="Hand Size") Hands Size
+								hr
+								label Glove
+								input#gsGlobe.span3( type="text",placeholder="XS,S,M,L ....")
+								label Ring
+								input#gsRing.span3(type="text",placeholder="Centimeter")
+								div.gsglobe.gssizinghide
+									label Hand Length
+									input#gsHandlM.span3(type="text",placeholder="Inch")
+									label Hand Width
+									input#gsHandwM.span3(type="text",placeholder="Inch")
+							div.control-group
+								label.lead(for="Lower Body") Lower Body
+								hr
+								label Pant
+								input#gsPant.span3( type="text",placeholder="XS,M,XL,2X,3X ....")
+								div.gspaant.gssizinghide
+									label Waist
+									input#gsWaist.span3(type="text",placeholder="Inch")
+									label Inseam
+									input#gsInseam.span3(type="text",placeholder="Inch")
+							div.control-group
+								label.lead(for="Feet") Feet
+								hr
+								label Shoe Size
+								input#gsShoe.span3( type="text",placeholder="Inch")
+								label Sock Size
+								input#gsSock.span3(type="text",placeholder="S,M,L,XL")
+												
+					div#step3.step-pane
+					
+			div#footer
+				p.pull-left(style="font-size: 10px;") &copy; 2013 Gifting Block, LLC. All Rights Reserved
+				p.pull-right(style="font-size: 10px;") Brought to you by 
+					a(href="http://www.empoweredmediagroup.com/" ,alt="Empowered Media Group, LLC." ,title="Brought to You By Empowered Media Group") Empowered Media Group, LLC.
+		
+		script(src="js/formhelper/bootstrap-formhelpers-phone.format.js")
+		script(src="js/formhelper/bootstrap-formhelpers-phone.js")
+		script(src="js/formhelper/bootstrap-formhelpers-states.en_US.js")
+		script(src="js/formhelper/bootstrap-formhelpers-states.js")
+		
+		script(src="js/jquery-ui.js")
+		script(src="js/bootstrap.min.js")
+		script(src="js/bootstrap-select.js")
+		script(src="js/bootstrap-switch.js")
+		script(src="js/flatui-checkbox.js")
+		script(src="js/flatui-radio.js")
+		script(src="js/jquery.tagsinput.js")
+		script(src="js/jquery.placeholder.js")
+		script(src="js/jquery.stacktable.js")
+		script(src="js/application.js")
+		script(src="js/bootstrap-modalmanager.js")
+		script(src="js/bootstrap-modal.js")
+		script.
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-40554682-2', 'giftingblock.com');
+			ga('send', 'pageview');
+			var globalPage="gs";
+			var em="#{em}";
+			var ln="#{ln}";
+			var fn="#{fn}";
+			var fbid="#{fbid}";
+			var birth="#{birth}";
+			var gender="#{gender}";
+			var loc="#{loc}";
+		script(src="js/qj.js")

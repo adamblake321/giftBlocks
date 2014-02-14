@@ -1,0 +1,192 @@
+.brand {
+	border: none !important;
+}
+
+input:required {
+  border-color: #E74C3C;
+  border-width: 2px;
+}
+.navbar-inverse .nav > li.active > a, .navbar-inverse .nav > li.active > a:hover, .navbar-inverse .nav > li.active > a:focus {
+	background-color: #FF6766 !important;
+	border-bottom-color: #FF6766 !important;
+}
+.help-block {
+	font-size: 16px !important;
+}
+p.prodDescb {
+	padding-bottom: 7px !important;
+}
+
+p.productDesc {
+	font-size: 16px !important;
+}
+#productCart {
+	border-bottom: 1px solid #34485F;
+	padding-bottom: 15px !important; 
+}
+#topbar {
+	background: #2C3E50;
+	height:75px;
+	border-bottom: solid 1px white;
+}
+#userName {
+  font-size: 26px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 0px !important;
+}
+#productPagi {
+	margin-left: 45% !important;
+}
+@media (max-width: 768px) {
+	#productPagi {
+		margin-left: 35% !important;
+	}
+}
+#personalBlock {
+	margin-top: -275px !important;
+}
+#cartSide {
+	border-left: 2px dashed #34485F;
+	padding: 10px;
+}
+.navbar .nav ul a:hover {
+background-color: #FF6766 !important;
+}
+input:focus {
+border-color: #E10A44 !important;
+}
+.btn-primary {
+	background: #FF6766 !important;
+}
+a.backLink {
+	color: #34485F !important;
+	text-decoration: none;
+}
+a.backLink:hover {
+	text-decoration: underline !important;
+	color: #FF6766 !important;
+}
+
+.navbar-inner {
+	border-radius: 0px !important;
+}
+
+.navbar-new-bt {
+	font-family: "Lato", sans-serif;
+	background-color: #FF6766;
+	border-radius: 75%;
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: 400;
+	height: 20px;
+	line-height: 20px;
+	position: absolute;
+	right: 5px;
+	text-align: center;
+	bottom: 5px;
+	padding-left: 3px;
+    padding-right:3px;
+	z-index: 10;  
+}
+
+
+.checkbox.primary .icons {
+	color: #2C3E50;
+}
+.checkbox.primary.checked .icons, .checkbox.primary.checked {
+	color: #E74C3C !important;
+}
+.fuelux .wizard ul li.complete {
+	color: #E74C3C !important;
+}
+.fuelux .badge-success {
+	background-color: #E74C3C !important;
+}
+
+.button {
+	background: #EA2E49;
+	border-color: #EA2E49;
+}
+.button:hover {
+	background: #AF0823;
+	border-color: #AF0823;
+}
+.inputTop {
+	margin-top: 5px !important;
+	border-radius: 0px !important;
+	height: 30px !important;
+}
+.loginTop {
+	margin-top: 5px !important;
+	height: 30px !important;
+}
+#signForm {
+	background: #C6C6C6;
+	opacity: 0.75;
+	border-radius: 5px;
+}
+input[type="text"], input[type="email"] {
+	opacity: 1.0 !important;
+	border-radius: 0px !important;
+}
+.add-on {
+	border-radius: 0px !important;
+	background: #fff !important;
+	border-left: none !important;
+}
+.signPrefix {
+	width: 40px !important;
+	margin-right: -45px;
+}
+#keepLoggedIn {
+	margin-top: -20px !important;
+	vertical-align: middle;
+	bootstrap-modal.csstext-align: center;
+}
+#footer {
+	font-size: 10px;
+}
+
+@media (max-width: 767px){ 
+    #cartSide {
+        border-left:0px;
+    }    
+}
+@media (min-width: 1200px){ 
+    body>.container-fluid>.row>.well.span8.offset4{
+        width:57%;
+        margin-left:10%;
+    }
+    .input-xlarge {
+        width: 270px;
+    }
+}
+@media (min-width: 980px) and (max-width: 1199px){ 
+    body>.container-fluid>.row>.well.span8.offset4{
+        width:50%;
+        margin-left:14%;
+    }
+    body>.container-fluid>.row>.well.span8.offset4 .input-xlarge {
+        width: 170px;
+    }
+}
+@media (min-width: 768px) and (max-width: 979px){ 
+    body>.container-fluid>.row>.well.span8.offset4 .input-xlarge {
+        width: 98%;
+    }
+    body>.container-fluid>.row>.well.span8.offset4{
+        width:50%;
+        margin-left:10%;
+        margin-right:3%;
+    }
+    
+    body>.container-fluid>.row>.well.span8.offset4 #tab2 .input-large {
+        width:98%;
+    }
+}
+body>.container-fluid>.row>.well.span8.offset4 .tab-content {
+        margin-bottom:0px;
+}
+button.btn, input[type="submit"].btn {
+    min-width:180px;
+}

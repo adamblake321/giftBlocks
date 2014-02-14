@@ -1,0 +1,226 @@
+!!! 5
+html
+  head
+    title Gifting Block™ - Male Profile
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(content='text/html; charset=UTF-8', http-equiv='Content-Type')
+    // Loading Bootstrap
+    link(href='bootstrap/css/bootstrap.css', rel='stylesheet')
+    link(href='bootstrap/css/bootstrap-responsive.css', rel='stylesheet')
+    // Loading Custom CSS
+    link(href='css/custom.css', rel='stylesheet')
+    // Loading Flat UI
+    link(href='css/flat-ui.css', rel='stylesheet')
+    link(rel='shortcut icon', href='images/favicon.ico')
+    link(rel='stylesheet', href='/css/divshot.css')
+  body.profile-private
+    script.
+      var listData;
+    // BEGIN TOP BAR
+    .navbar.navbar-inverse
+      .navbar-inner
+        .container-fluid
+          button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#')
+            img(src='img/finale-logo.png')
+          .nav-collapse.collapse
+            ul.nav
+              li.offset1
+                a
+                  form#searchSubmit(action='productdiscovery')
+                    .input-append
+                      input#search.input-xxlarge(type='text', name='Search')
+                      span.add-on
+                        i.fui-eye(style='color: #000;')
+            ul.nav.pull-right.hidden-tablet(style='margin-top: 15px; margin-left: 15px; margin-right: 50px;')
+              li
+                a(href='#')
+                  img(src='img/little-box.png', width='24px', height='24px')
+                  span.hidden-desktop Notifications
+                  span.navbar-new-bt 1
+              li.active
+                a(href='./profile')
+                  span.fui-user
+                  span.hidden-desktop My Profile
+                ul
+                  li
+                    a(href='./edit-profile')
+                      i.icon-pencil.icon-white
+                      | Edit Your Profile
+                  li.divider
+                  li
+                    a(href='#')
+                      i.icon-th-large.icon-white
+                      | Find Friends
+                  li
+                    a(href='mailto:support@giftingblock.com')
+                      i.icon-envelope.icon-white
+                      | Contact Support
+              li
+                a(href='./productdiscovery')
+                  img(src='img/cart.png', width='24px', height='24px')
+                  span.hidden-desktop  Browse Products
+                ul
+                  li
+                    a(href='./shopping-cart')
+                      i.icon-shopping-cart.icon-white
+                      | My Shopping Cart
+              li
+                a(href='./settings')
+                  span.fui-gear
+                  span.hidden-desktop Settings
+                ul(style='width: 125px;')
+                  li
+                    a(href='./logout')
+                      i.icon-off.icon-white
+                      | Log Out
+          // /.nav-collapse
+        // /.container-fluid
+    // /.container
+    // END TOP BAR
+    .container-fluid.hidden-phone
+      .row-fluid
+        .span12
+          .row-fluid
+            // left part
+            .span4
+              .span12.well
+                .media
+                  a.pull-left(href='')
+                    img.media-object.img-polaroid(src="#{usr_profile.photopath}", width='125', height='125')
+                  .media-body
+                    ul#profileInfo.unstyled
+                      li#userName.media-heading
+                        H4 #{usr_profile.un}
+                      li
+                        b #{usr_profile.fn} &nbsp;&nbsp;&nbsp; #{usr_profile.ln}
+                      li#address
+                        b #{usr_profile.add1}
+                      li
+                        b #{usr_profile.em}
+                      li
+                        b Birthday &nbsp;&nbsp; #{usr_profile.birth}
+              #personalBlock.well.span12
+                h6
+                  b #{usr_profile.un}'s &nbsp;&nbsp;
+                  | Block
+                .control-group.medium(style='float: left;')
+                  .input-prepend
+                    span.add-on
+                      i.icon-align-left(style='color: #333;')
+                    input#status.input-medium.span3(style='border-left: none;', type='text', name='Status')
+                button.btn.btn-primary.btn-medium(type='button', style='margin-left: 20px; min-width: 100px;') BlockThis
+                .span11.well(style='margin-left: 0; background: #f9fafb;')
+                  strong
+                    success "This is a status update"
+                    | -#{usr_profile.un}
+                -for(var i =0; i<myproducts.length; i++){
+                .span11.well(style='margin-left: 0; background: #f9fafb;')  
+                  strong
+                    | #{usr_profile.un} added
+                    danger  #{myproducts[i].name}&nbsp;&nbsp;&nbsp;
+                    | to the  #{myproducts[i].listId}
+                  img.pull-right(src='img/cart_dark.png', width='24px', height='24px')
+                  img.pull-right(src='img/little-box_dark.png', width='24px', height='24px')
+                -}
+                
+            #mannequin.hidden-phone.span2
+              img(id="gender-photo", width="225", height="557")
+              input(type='hidden', id='gender-val', value="#{usr_profile.un}")
+            // end middle image
+            // right part
+            .span4.pull-right(style='margin-right: 9%;')
+              .span10.well.pull-right
+                img(src="#{usr_profile.photopath}", width='100')
+              .row-fluid
+                #add-list.span12.well(style='position: relative;')
+                  .modal_add_list
+                    button.close.close-add-list(type='button', data-dismiss='modal', aria-hidden='true') ×
+                    .diag-body
+                      input.input-xlarge(type='text', placeholder='List Name', id="listname")
+                      .btn-group
+                        button.btn.dropdown-toggle(type='button', data-toggle='dropdown', id="listlevel")
+                          | Choose Privacy Level
+                          span.caret
+                        ul.dropdown-menu
+                          li
+                            a(href='#') select1
+                          li
+                            a(href='#') select1
+                          li 
+                            a(href='#') select1
+                          li.divider
+                          li
+                            a(href='#') select4
+                      button.btn.btn-primary.btn-lg(type='button', id="listcreatbtn") Create List
+                  h6
+                    b #{usr_profile.un}'s &nbsp;&nbsp;
+                    | Block
+                  button.btn.btn-addlist(type='button')
+                    | Add List
+                    span.add_list
+                  input(type='hidden', id='hiddenlist', value='')
+                  div(id="listPages",style='position: relative; z-index: 1; background-color: rgba(255,255,0,0.3);')
+                  input(type='hidden', id='currentPage', value="#{currentPage}")
+                  .pagination
+                    ul(id="listpagenation")
+
+                     
+                   
+
+    script(src='js/jquery-1.8.3.min.js')
+    script(src='http://code.jquery.com/ui/1.10.3/jquery-ui.js')
+    script(src='js/jquery.ui.touch-punch.min.js')
+    script(src='js/bootstrap.min.js')
+    script(src='js/bootstrap-select.js')
+    script(src='js/bootstrap-switch.js')
+    script(src='js/flatui-checkbox.js')
+    script(src='js/flatui-radio.js')
+    script(src='js/jquery.tagsinput.js')
+    script(src='js/jquery.placeholder.js')
+    script(src='js/jquery.stacktable.js')
+    script(src='js/application.js')
+    script(src="js/qj.js")
+    script(src="js/qprofile.js.js")
+    script
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-40554682-2', 'giftingblock.com');
+      ga('send', 'pageview');
+      
+      // run the currently selected effect
+      function runEffect() {
+      // get effect type from
+      var selectedEffect = "blind";
+      // most effect types need no options passed by default
+      var options = {};
+      // some effects have required parameters
+      if ( selectedEffect === "scale" ) {
+      options = { percent: 100 };
+      } else if ( selectedEffect === "size" ) {
+      options = { to: { width: 280, height: 185 } };
+      }
+      // run the effect
+      $( ".modal_add_list" ).show( selectedEffect, options, 500, callback );
+      };
+      //callback function to bring a hidden box back
+      function callback() {
+      //setTimeout(function() {
+      //        $( "#effect:visible" ).removeAttr( "style" ).fadeOut();
+      //      }, 1000 );
+      };
+      // set effect from select menu value
+      $( ".btn-addlist" ).click(function() {
+      
+      runEffect();
+      return false;
+      });
+      $( ".close-add-list" ).click(function() {
+      $( ".modal_add_list" ).hide();
+      return false;
+      });

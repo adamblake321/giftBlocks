@@ -1,0 +1,329 @@
+!!!
+html(lang="en")
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		title Gifting Block&trade; - Settings
+		link(rel='stylesheet', href='bootstrap/css/bootstrap.css')
+		link(rel='stylesheet', href='bootstrap/css/bootstrap-responsive.css')
+		link(rel='stylesheet', href='css/custom.css')
+		link(rel='stylesheet', href='css/bootstrap-modal.css')
+		
+		link(rel='stylesheet', href='css/flat-ui.css')
+		link(rel='shortcut icon', href='images/favicon.ico')
+		
+		link(rel='stylesheet', href='http://fuelcdn.com/fuelux/2.2/css/fuelux.css')
+		link(rel='stylesheet', href='http://fuelcdn.com/fuelux/2.2/css/fuelux-responsive.css')
+		
+		script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js",type="text/javascript")
+		script(src="http://fuelcdn.com/fuelux/2.2/loader.min.js",type="text/javascript")
+		
+		| <!--[if lt IE 9]> script(type='text/javascript', src='js/html5shiv.js')<![endif]-->
+	body
+		// Begin Top Bar
+		div.navbar.navbar-inverse
+			div.navbar-inner
+				div.container-fluid
+					button.btn.btn-navbar(data-toggle="collapse",data-target=".nav-collapse")
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.brand(href="#" ,name="top")
+						img(src="img/finale-logo.png")
+					div.nav-collapse.collapse
+						ul.nav
+							li.offset1
+								a(style="height:50px;")
+									form#searchSubmit(action='productdiscovery').input-append
+										input.input-xxlarge(type="text", name="Search")
+										span.add-on
+											i.fui-eye(style="color:#000")
+						ul.nav.pull-right.hidden-tablet(style="margin-top: 15px; margin-left: 15px; margin-right: 50px;")
+							li
+								a(href="#")
+									img(src="img/little-box.png" ,width="24px", height="24px") span.hidden-desktop Notifications
+									span.navbar-new-bt 1
+							li
+								a(href="/profile")
+									span.fui-user
+									span.hidden-desktop My Profile
+								ul
+									li
+										a(href="/edit-profile") 
+											i.icon-pencil.icon-white
+											| Edit Your Profile
+									li.divider
+									li
+										a(href="#")
+											i.icon-th-large.icon-white
+											| Find Friends
+									li
+										a(href="mailto:support@giftingblock.com")
+											i.icon-envelope.icon-white
+											| Contact Support
+							
+							li
+								a(href="/productdiscovery")
+									img(src="img/cart.png",width="24px", height="24px")
+									span.hidden-desktop Browse Products
+								ul
+									li
+										a(href="/shopping-cart")
+											i.icon-shopping-cart.icon-white
+											| My Shopping Cart
+							li.active
+								a(href="/settings" ,alt="Settings",title="Your Settings", rel="nofollow")
+									span.fui-gear
+									span.hidden-desktop Settings
+								ul(style="width:125px;")
+									li
+										a(href="/logout")
+											i.icon-off.icon-white
+											| Log Out
+		div.container-fluid
+			div.row
+				div.well.span8.offset4
+					div#myTabContent.tab-content
+						div#home.tab-pane.active.in
+							h4 Account Settings
+							form#tab2
+								label Username
+								input#set_un.input-xlarge(type="text", name="username", placeholder="Username", value="#{usr_profile.un}")
+								label Name
+								input#set_fn.input-xlarge(type="text", name="firstname", placeholder="First Name",value="#{usr_profile.fn}")
+								&nbsp;
+								input#set_ln.input-xlarge(type="text", name="lastname", placeholder="Last Name",value="#{usr_profile.ln}")
+								label Email
+								input#set_em.input-large(type="email", name="email_address", placeholder="Email Address",value="#{usr_profile.em}")
+								&nbsp;
+								input#set_cem.input-large(type="email", name="confirm_email_address", placeholder="Confirm Your Email Address",value="#{usr_profile.em}")
+								input#set_pid(type="hidden",value="#{usr_profile._id}")
+								input#set_hem(type="hidden",value="#{usr_profile.em}")
+								input#set_hfn(type="hidden",value="#{usr_profile.fn}")
+								input#set_hln(type="hidden",value="#{usr_profile.ln}")
+							span
+								a(href="#deleteConfirm", data-toggle="modal", title="Delete Your Account? - Gifting Block", target="_blank")
+									button#btnaccntdel.btn.btn-danger
+										i.icon-trash.icon-white
+										|  Delete Account
+							span
+								button#btnaccntupdate.btn.btn-success(style="float:right") Update
+						div#contact.tab-pane.fade.in
+							h4 Contact Info
+								h5 Shipping Address
+								fieldset
+									div.control-group
+										label.control-label Street Address
+										div.controls
+											input#address-line1.input-xlarge(type="text", name="address-line1",id="add1", placeholder="Street Address/P.O. Box", value="#{usr_profile.add1}")
+											input#address-line2.input-xlarge(type="text", name="address-line2",id="add2", placeholder="Apartment, Suite, Unit, Building, Floor, Etc..", value="#{usr_profile.add2}")
+									div.control-group
+										label City
+										div.controls
+											input#city.input-xlarge(type="text", name="city", placeholder="City",id="city", value="#{usr_profile.city}")
+											input#postal-code.input-small(type="text", name="postal-code",id="zip", placeholder="Zip Code", value="#{usr_profile.zip}")
+											input#region.input-medium(type="text", name="region",id="state" ,placeholder="State",value="#{usr_profile.state}" )
+											p.help-block
+							
+								h5 Billing Address
+								fieldset
+									p Is Your Billing Address the Same as your Shipping Address?
+									label.radio
+										input#optionsRadios1.input-xlarge(type="radio", name="optionsRadios", value="Yes", checked) Yes
+									label.radio
+										input#optionsRadios2.input-xlarge(type="radio", name="optionsRadios", value="No", checked) No
+									div.control-group
+										label.control-label Street Address
+										div.controls
+											input#address-line1.input-xlarge(type="text", name="address-line1",id="badd1", placeholder="Street Address/P.O. Box", value="#{usr_profile.badd1}")
+											input#address-line2.input-xlarge(type="text", name="address-line2",id="badd2", placeholder="Apartment, Suite, Unit, Building, Floor, Etc..", value="#{usr_profile.badd2}")	
+									div.control-group
+										label City
+										div.controls
+											input#city.input-xlarge(type="text", name="city", placeholder="City",id="bcity", value="#{usr_profile.bcity}")
+											input#postal-code.input-small(type="text", name="postal-code", placeholder="Zip Code",id="bzip", value="#{usr_profile.bzip}")
+											input#region.input-medium(type="text", name="region", placeholder="State",id="bstate" ,value="#{usr_profile.bstate}")
+											p.help-block
+								hr
+							div
+								button.btn.btn-success.billsubmit Update
+						div#size.tab-pane.fade
+							h4 Size & Measurement
+							fieldset
+								label.checkbox.primary(id="chk1", for="checkbox1")
+									span.icons
+										span.first-icon.fui-checkbox-unchecked
+										span.second-icon.fui-checkbox-checked
+									input#checkbox1(type="checkbox",class="r_checkCls", data-toggle="checkbox", value="#{usr_profile.right}")
+									| Right Handed
+								label.checkbox.primary(id="chk2",for="checkbox2")
+									span.icons
+										span.first-icon.fui-checkbox-unchecked
+										span.second-icon.fui-checkbox-checked
+									input#checkbox2(type="checkbox",class="l_checkedCls",data-toggle="checkbox", value="#{usr_profile.left}")
+									| Left Handed
+							p
+								div.control-group
+									label.lead(for="Head Size") Head Size
+									hr
+									label Hat
+									input#gsHat.span3( type="text",placeholder="S,M,L ....", id="hat", value="#{usr_profile.fmhat}")
+									label Head Measurement
+									input#gsHeadM.span3(type="text" ,placeholder="Inch", id="headM", value"#{usr_profile.fmheadm}")
+									label Hat Measurement
+									input#gsHatM.span3(type="text" ,placeholder="Inch", id="hatM", value = "#{usr_profile.fmhatm}")
+								div.control-group
+									label.lead(for="Torso Size") Torso Size
+									hr
+									label Shirt
+									input#gsShirt.span3( type="text",placeholder="XS,M,XL,2X,3X ....", id="shirt", value="#{usr_profile.fmshirt}")
+									label Chest
+									input#gsChestM.span3(type="text",placeholder="Inch", id="chest", value = "#{usr_profile.fmchest}")
+									label Neck
+									input#gsNeckM.span3(type="text",placeholder="Inch", id="neckM", value="#{usr_profile.fmneck}")
+									label Sleeve
+									input#gsSleeveM.span3(type="text",placeholder="Inch", id="sleeve", value="#{usr_profile.fmsleeve}")
+								div.control-group
+									label.lead(for="Hand Size") Hands Size
+									hr
+									label Globe
+									input#gsGlobe.span3( type="text",placeholder="XS,S,M,L ....", id="globe", value="#{usr_profile.fmglobe}")
+									label Ring
+									input#gsRing.span3(type="text",placeholder="Inch", id="ring", value="#{usr_profile.fmring}")
+									label Hand Length
+									input#gsHandlM.span3(type="text",placeholder="Inch", id="handL", value="#{usr_profile.fmhandl}")
+									label Hand Width
+									input#gsHandwM.span3(type="text",placeholder="Inch", id="handw",value="#{usr_profile.fmhandnw}")
+								div.control-group
+									label.lead(for="Lower Body") Lower Body
+									hr
+									label Pant
+									input#gsPant.span3( type="text",placeholder="XS,M,XL,2X,3X ....", id="pant", value="#{usr_profile.fmpant}")
+									label Waist
+									input#gsWaist.span3(type="text",placeholder="Inch", id="waist", value="#{usr_profile.fmwaist}")
+									label Inseam
+									input#gsInseam.span3(type="text",placeholder="Inch", id="inseam", value="#{usr_profile.fminseam}")
+								div.control-group
+									label.lead(for="Feet") Feet
+									hr
+									label Shoe Size
+									input#gsShoe.span3( type="text",placeholder="Inch", id="shoe", value="#{usr_profile.fmshoe}")
+									label Sock Size
+									input#gsSock.span3(type="text",placeholder="S,M,L,XL", id="sock", value="#{usr_profile.fmsock}")
+							span
+								button.btn.btn-success Update									
+						div#home.tab-pane.fade
+							form#tab2
+								label Username
+								input.input-xlarge(type="text", name="username", placeholder="Username")
+								label Name
+								input.input-xlarge(type="text", name="firstname", placeholder="First Name")
+								input.input-xlarge(type="text", name="lastname", placeholder="Last Name")
+								label Email
+								input.input-large(type="email", name="email_address", placeholder="Email Address")
+								input.input-large(type="email", name="confirm_email_address", placeholder="Confirm Your Email Address")
+							span
+								a(href="#deleteConfirm", data-toggle="modal", title="Delete Your Account? - Gifting Block", target="_blank")
+									button.btn.btn-danger
+										i.icon-trash.icon-white
+										| Delete Account
+							span
+								button.btn.btn-success Update
+						div#password.tab-pane.fade
+							h4 Password Settings
+								label
+									| Old Password
+									span.label.label-small.label-important Important
+								input.input-xlarge(type="password",id='o_pwd', name="oldpassword", placeholder="")
+								label
+									| New Password
+								input.input-xlarge(type="password", id='n_pwd', name="newpassword", placeholder="")
+								label
+									| Confirm New Password
+								input.input-xlarge(type="password",id='confirm', name="confirmnewpassword", placeholder="")
+								hr
+								div
+									button.btn.btn-success.pass-change Update
+				div.span3
+					div.sidebar-nav
+						div.well(style="padding: 8px 0;")
+							ul.nav.nav-list
+								li
+									a(href="/profile")
+										i.fui-user(style="color: #34485F;")
+										|  Back to My Profile
+								li
+									a(href="/edit-profile")
+										i.icon-pencil(style="color: #34485F;")
+										|  Edit Your Profile
+								li.nav-header Account Menu
+								li.divider
+								li.active
+									a(href="#home", data-toggle="tab")	
+										i.fui-gear
+										|  Account Settings	
+								li.divider
+								li
+									a(href="#contact",data-toggle="tab")
+										i.fui-mail(style="color: #344760;")
+										|  Contact Info	
+								li.divider
+								li
+									a(href="#password",data-toggle="tab")
+										i.fui-lock(style="color: #344760;")
+										|  Password	
+								li.divider
+								li
+									a(href="#size",data-toggle="tab")
+										i.fui-gear(style="color: #344760;")
+										|  Size & Measurement
+								li.divider
+								li
+									a(href="/logout")
+										i.icon-share
+										|  Logout
+			
+			div#footer
+				p.pull-left(style="font-size: 10px;") &copy; 2013 Gifting Block, LLC. All Rights Reserved
+				p.pull-right(style="font-size: 10px;") Brought to you by 
+					a(href="http://www.empoweredmediagroup.com/" ,alt="Empowered Media Group, LLC." ,title="Brought to You By Empowered Media Group") Empowered Media Group, LLC.
+		
+		
+		div#deleteConfirm.modal.container.hide.fade(tabindex="-1")
+			div.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true")×
+				h3 Account Deletion
+			div.modal-body
+				p
+					| Are you sure you want to 
+					strong
+						| Delete
+					| your Gifting Block&trade; Account?
+				label
+					| Enter
+					strong
+						| DELETE
+					|  in all Caps below to Delete your Account Permanently
+				input#delconfirmmsg.input-large(type="text",placeholder="Type Here...")
+			div.modal-footer
+				button.btn.btn-large.btn-inverse(type="button", data-dismiss="modal") Whoops, Nevermind!
+				button#delaccnt.btn.btn-large.btn-primary(type="button", data-dismiss="modal") Delete Account
+			input#orgPass(type='hidden',value="#{usr_profile.pass}")	
+		script(src="js/jquery-1.8.3.min.js")
+		script(src="js/jquery-ui-1.10.3.custom.min.js")
+		script(src="js/jquery.ui.touch-punch.min.js")
+		script(src="js/bootstrap.min.js")
+		script(src="js/bootstrap-select.js")
+		script(src="js/bootstrap-switch.js")
+		script(src="js/flatui-checkbox.js")
+		script(src="js/flatui-radio.js")
+		script(src="js/bootstrap-modalmanager.js")
+		script(src="js/bootstrap-modal.js")
+		script(src="js/qj.js")
+		script.
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-40554682-2', 'giftingblock.com');
+			ga('send', 'pageview');

@@ -1,0 +1,112 @@
+!!!
+html(lang="en")
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		title Gifting Block&trade; - Sign Up for Gifting Block&trade;
+		link(rel='stylesheet', href='bootstrap/css/bootstrap.css')
+		link(rel='stylesheet', href='bootstrap/css/bootstrap-responsive.css')
+		link(rel='stylesheet', href='css/clean.css')
+		link(rel='stylesheet', href='css/flat-ui.css')
+		link(rel='shortcut icon', href='images/favicon.ico')
+		| <!--[if lt IE 9]> script(type='text/javascript', src='js/html5shiv.js')<![endif]-->		
+	body
+		// Begin Navbar
+		div.navbar.navbar-inverse
+			div.navbar-inner
+				div.container-fluid
+					a.btn.btn-navbar(data-toggle="collapse",data-target=".nav-collapse")
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.brand(href="#" ,name="top")
+						img(src="img/finale-logo.png")
+					div.nav-collapse.collapse
+						ul.nav.pull-right
+							li.dropdown
+								a.gbLink.btn.btn-block.btn-large.dropdown-toggle(href="#",data-toggle="dropdown")
+									| Sign In
+									strong.caret
+								div.dropdown-menu(style="padding: 15px; padding-bottom: 0px;")
+									form(method="post",action="/login",accept-charset="UTF-8")
+										input.input-large(style="margin-bottom: 15px;",type="text",placeholder="Username",id="username",name="username")
+										i.fui-user(style="vertical-align: middle;")
+										input.input-large(style="margin-bottom: 15px;",type="password",placeholder="Password",id="password",name="password")
+										i.fui-lock(style="vertical-align: middle;")
+										br
+										input(style="float: left; margin-right: 10px;",type="checkbox",value="1",id="remember-me",name="rememberme")
+										label.string.optional(for="user_remember_me") Remember me
+										input.btn.btn-primary.btn-block.btn-sign(type="submit",id="sign-in", value="Sign In",style="border-radius:6px!important;")
+										label(style="text-align:center;margin-top:5px") or
+										button.btn.btn-block.btn-social-facebook(id="sign-up-facebook")
+											a(href="/auth/facebook",style="color:white") Sign In with Facebook
+		script.
+			$(document).ready(function(){
+				Handles menu drop down
+				$('.dropdown-menu').find('form').click(function (e) 
+				{
+					e.stopPropagation();
+				});
+			});
+		img.signBack.hidden-phone(src="img/signbg.png")
+		
+		// Begin Content Container
+		div.container(style="width: 90% !important;")
+			div.row(style="margin-top: 5% !important;")
+			div.span4.offset9
+				form#signUpBox.form-signin
+					p.form-signin-heading(style="margin-bottom: 15px;")
+						img(src="img/sign-up-logo.png",width="350px",height="218px")
+						p.light Sign Up Below!
+					div.control-group
+						div.input-append.cFix
+							input.input-xlarge(type="text",id="firstNameInput-SignUp",placeholder="First Name",required)
+							i.fui-user.btn.btn-medium
+					div.control-group
+						div.input-append.cFix
+							input.input-xlarge(type="text",id="lastNameInput-SignUp",placeholder="Last Name",required)
+							i.fui-user.btn.btn-medium
+					div.control-group
+						div.input-append.cFix
+							input.input-xlarge(type="text",id="emailInput-SignUp" ,placeholder="Email",required)
+							i.fui-mail.btn.btn-medium
+					label#termchk.checkbox(for="checkbox1",style="margin-left: 15%;")
+						span.icons
+							span.first-icon.fui-checkbox-unchecked
+							span.second-icon.fui-checkbox-checked
+						input(type="checkbox", value="" ,id="checkbox1" ,data-toggle="checkbox")
+						| I Agree to the
+						a.tos(href="#",title="terms of service")
+						| Terms of Service
+					button#clkSgnUp.btn.btn-block.btn-large.btn-sign(style="text-transform: uppercase; font-size: 18px;",type="button")
+						|Start Gifting
+						img(src="img/little-box.png",width="24px" ,height="24px" ,style="margin-top: -10px;margin-left:10px;zoom:0.8;")
+					a.btn.btn-block.btn-medium.btn-social-facebook(href="/auth/facebook", style="margin-top:10px;", id="fbButton")
+						i.fui-facebook
+						| Connect with Facebook
+		// Begin Footer
+		div#footer
+			p(style="float: left; font-size: 10px; margin-top: 15px; margin-left: 15px;") &copy; Copyright 2013 Gifting Block, LLC. All Rights Reserved
+			p(style="float: right; font-size: 10px; margin-top: 15px; margin-right: 15px;") Designed &amp; Built by <a href="http://www.empoweredmediagroup.com/" title="Empowered Media Group">Empowered Media Group</a>, LLC.
+			
+			
+		// Load JS here for greater good =============================
+		script(src="js/jquery-1.8.3.min.js")
+		script(src="js/jquery-ui-1.10.3.custom.min.js")
+		script(src="js/jquery.ui.touch-punch.min.js")
+		script(src="js/bootstrap.min.js")
+		script(src="js/bootstrap-select.js")	
+		script(src="js/bootstrap-switch.js")
+		script(src="js/flatui-checkbox.js")
+		script(src="js/flatui-radio.js")
+		script(src="js/jquery.tagsinput.js")
+		script(src="js/jquery.placeholder.js")
+		script(src="js/jquery.stacktable.js")
+		script.
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-40554682-2', 'giftingblock.com');
+			ga('send', 'pageview');
+		script(src="js/qj.js")

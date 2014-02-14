@@ -1,0 +1,24 @@
+{
+  "name": "giftsblock",
+  "subdomain": "giftsblock",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "version": "0.0.0-95",
+  "engines": {
+    "node": "0.8.x"
+  },
+  "dependencies": {
+    "express": "2.5.11",
+    "jade": ">= 0.0.1",
+    "mongoose": ">=2.7.0",
+    "nodemailer": "*",
+    "passport": "0.1.17",
+    "passport-facebook": "0.1.5",
+    "xml2json": "0.3.2",
+    "int": "0.1.1",
+    "aws-lib": "0.2.1",
+    "stripe": "1.3.0",
+    "fileupload": "0.2.4" 
+  }
+}

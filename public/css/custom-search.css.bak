@@ -1,0 +1,15 @@
+@media (max-width: 1200px) and (min-width: 980px){
+	.row-fluid .span9 {
+		width: 72.35897435897436%;
+	}
+	.well>img{
+		width:100%!important;
+	}	
+}
+@media (max-width: 979px) and (min-width: 767px){
+	.well>img{
+		width:60%!important;
+		height:auto!important;
+		margin-top:10%!important;
+	}	
+}

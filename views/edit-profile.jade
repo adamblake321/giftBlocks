@@ -1,0 +1,142 @@
+!!! 5
+html
+  head
+    title Gifting Block™ - Edit Your Profile
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(content='text/html; charset=UTF-8', http-equiv='Content-Type')
+    // Loading Bootstrap
+    link(href='bootstrap/css/bootstrap.css', rel='stylesheet')
+    link(href='bootstrap/css/bootstrap-responsive.css', rel='stylesheet')
+    // Loading Custom CSS
+    link(href='css/custom.css', rel='stylesheet')
+    // Loading Flat UI
+    link(href='css/flat-ui.css', rel='stylesheet')
+    link(rel='shortcut icon', href='images/favicon.ico')
+    link(rel='stylesheet', href='/css/divshot.css')
+    link(rel='stylesheet', href='/css/custom-edit-profile.css')
+  body
+    // BEGIN TOP BAR
+    .navbar.navbar-inverse
+      .navbar-inner
+        .container-fluid
+          button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#')
+            img(src='img/finale-logo.png')
+          .nav-collapse.collapse
+            ul.nav
+              li.offset1
+                a(href='#')
+                  .input-append
+                    input.input-xxlarge(type='text', name='Search')
+                    span.add-on
+                      i.fui-eye(style='color: #000;')
+            ul.nav.pull-right.hidden-tablet(style='margin-top: 15px; margin-left: 15px; margin-right: 50px;')
+              li
+                a(href='#')
+                  img(src='img/little-box.png', width='24px', height='24px')
+                  span.hidden-desktop Notifications
+                  span.navbar-new-bt 1
+              li
+                a(href='./search')
+                  span.fui-user
+                  span.hidden-desktop My Profile
+                ul
+                  li
+                    a(href='./edit-profile')
+                      i.icon-pencil.icon-white
+                      | Edit Your Profile
+                  li.divider
+                  li
+                    a(href='#')
+                      i.icon-th-large.icon-white
+                      | Find Friends
+                  li
+                    a(href='mailto:support@giftingblock.com')
+                      i.icon-envelope.icon-white
+                      | Contact Support
+              li.active
+                a(href='./productdiscovery')
+                  img(src='img/cart.png', width='24px', height='24px')
+                  span.hidden-desktop  Browse Products
+                ul
+                  li
+                    a(href='./shopping-cart')
+                      i.icon-shopping-cart.icon-white
+                      | My Shopping Cart
+              li
+                a(href='./settings')
+                  span.fui-gear
+                  span.hidden-desktop Settings
+                ul(style='width: 125px;')
+                  li
+                    a(href='./logout')
+                      i.icon-off.icon-white
+                      | Log Out
+          // /.nav-collapse
+        // /.container-fluid
+    // /.container
+    // END TOP BAR
+    .container-fluid
+      .row-fluid
+        .span9
+          .row-fluid
+            .hero-unit.span6
+              .span4
+                img.polaroid(src='//app.divshot.com/img/placeholder-100x100.gif', width='145', height='auto')
+              p#userName.pull-left
+                strong Bryan
+                | Angelo
+              br
+              ul#profileInfo.pull-left.unstyled
+                li
+                  i Owner and CEO of Empowered Media Group
+                li April 22, 1992
+                li Class of 2014
+                li
+                  i.icon-heart(style='color: #E10A44 !important;')
+                  | In A Relationship
+            #mannequin.hidden-phone.span4
+              img(src='http://www.socialwebden.com/mushrus/gblock/images/mannequin-male.svg', style='padding-left: 85px; padding-right: 45px !important; padding-top: 10px !important; padding-bottom: 10px !important;')
+            .row-fluid
+              .span6.well(style='margin-top: -175px;')
+                h2 Heading 2
+                p
+                  | A paragraph of details about the heading and its related content so that
+                  | you can have an example of how this should work.
+                a.btn(href='#')
+                  span.btn-label View Details
+      .row-fluid
+        #rightBar.span3
+          ul.nav.nav-pills.nav-stacked
+            h2(style='padding-left: 10px !important; text-transform: uppercase;') SocialBlocks
+            li.active
+              a(href='#') Subnavigation One
+            li
+              a(href='#') Subnavigation Two
+          .well
+            p
+              b Tip:
+              | You can add additional components to your layout easily.
+    script(src='js/jquery-1.8.3.min.js')
+    script(src='js/jquery-ui-1.10.3.custom.min.js')
+    script(src='js/jquery.ui.touch-punch.min.js')
+    script(src='js/bootstrap.min.js')
+    script(src='js/bootstrap-select.js')
+    script(src='js/bootstrap-switch.js')
+    script(src='js/flatui-checkbox.js')
+    script(src='js/flatui-radio.js')
+    script(src='js/jquery.tagsinput.js')
+    script(src='js/jquery.placeholder.js')
+    script(src='js/jquery.stacktable.js')
+    script(src='js/application.js')
+    script
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-40554682-2', 'giftingblock.com');
+      ga('send', 'pageview');
+// Jade
